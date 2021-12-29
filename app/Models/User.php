@@ -45,4 +45,25 @@ class User extends Authenticatable
     public function statuses(){
         return $this->hasMany(Status::class);
     }
+
+    public function follows()
+    {
+        // relasi dengan dirinya sendiri, table pivot, primary key, pivot primary key
+        return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id')->withTimestamps();
+    }
+
+    public function follow(User $user)
+    {
+        return $this->follows()->save($user);
+    }
+
+    public function timeline()
+    {
+        $userFollwing = $this->follows()->pluck('following_user_id');
+        return  Status::whereIn('user_id', $userFollwing)
+                        ->orwhere('user_id', $this->id)
+                        ->latest()
+                        ->get();
+
+    }
 }

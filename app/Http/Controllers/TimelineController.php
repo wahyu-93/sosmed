@@ -16,7 +16,8 @@ class TimelineController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $statuses = Status::where('user_id', Auth::user()->id)->get();
-        return view('timeline',compact('statuses'));
+        $statuses = Auth::user()->timeline();
+        $following = Auth::user()->follows()->limit(5)->get();
+        return view('timeline',compact('statuses', 'following'));
     }
 }
