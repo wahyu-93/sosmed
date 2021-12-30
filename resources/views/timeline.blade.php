@@ -2,8 +2,33 @@
     <x-container>
         <div class="grid grid-cols-12 gap-5">
             <div class="col-span-8">
-                <div class="border rounded-xl p-5 space-y-5">
-                    @foreach ($statuses as $status)
+                <x-card>
+                    <div class="flex">
+                        <div class="mr-3">
+                            <img class="w-10 h-10 rounded-full" src="https://i.pravatar.cc/150" alt="">
+                        </div>
+
+                        <div class="w-full">
+                            <div class="font-semibold mb-2">
+                                {{ ucwords(Auth::user()->name) }}
+                            </div>
+
+                            <div>
+                                <textarea 
+                                    name="body" 
+                                    id="body"
+                                    class="rounded-xl w-full bg-gray-100 form-textarea resize-none border-gray-300 focus:border-blue-500"></textarea>
+
+                                <div class="text-right">
+                                    <x-button class="bg-blue-600">Post</x-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+                </x-card>
+
+                @foreach ($statuses as $status)
+                    <div class="border rounded-xl p-5 my-3">
                         <div class="flex">
                             <div class="flex-shrink-0s mr-3">
                                 <img class="w-10 h-10 rounded-full" src="https://i.pravatar.cc/150" alt="">
@@ -24,11 +49,11 @@
                                 </div>
                             </div>
                         </div>    
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             </div>
             <div class="col-span-4">
-                <div class="border rounded-xl p-5">
+                <x-card>
                     <h1 class="font-semibold">Recently Follow</h1>
                     <div class="space-y-5">
                         @foreach ($following as $user)
@@ -49,7 +74,7 @@
                             </div>    
                         @endforeach
                     </div>
-                </div>
+                </x-card>
             </div>
         </div>
     </x-container>
