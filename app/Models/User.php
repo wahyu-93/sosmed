@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -42,8 +43,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function statuses(){
+    public function statuses()
+    {
         return $this->hasMany(Status::class);
+    }
+
+    public function makeStatus($string)
+    {
+        $this->statuses()->create([
+            'body'          => $string,
+            'identifier'    => $this->id . strtolower(Str::random(32)),
+        ]);
     }
 
     public function follows()
@@ -65,5 +75,11 @@ class User extends Authenticatable
                         ->latest()
                         ->get();
 
+    }
+
+    public function gravatar($size = 100)
+    {
+        $default = "mm";
+       return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
     }
 }
