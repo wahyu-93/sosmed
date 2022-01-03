@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/dashboard';
+    public const HOME = '/timeline';
 
     /**
      * The controller namespace for the application.
@@ -35,6 +36,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // multiple route binding
+        Route::bind('user', function($user){
+            return User::where('id', $user)->orwhere('username', $user)->orwhere('name', $user)->firstOrFail();
+        });
+
         $this->configureRateLimiting();
 
         $this->routes(function () {

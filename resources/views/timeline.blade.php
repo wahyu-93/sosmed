@@ -65,6 +65,7 @@
                                     <img class="w-10 h-10 rounded-full" src="{{ $user->gravatar() }}" alt="">
                                 </div>
 
+
                                 <div>
                                     <div class="font-semibold">
                                     {{ $user->name }}
