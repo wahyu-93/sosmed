@@ -1,3 +1,3 @@
-<div class="border rounded-xl p-5 mb-2">
+<div class="border rounded-xl py-2 px-5 mb-2">
     {{$slot}}
 </div>

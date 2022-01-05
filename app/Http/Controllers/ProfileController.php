@@ -16,6 +16,6 @@ class ProfileController extends Controller
      */
     public function __invoke(Request $request, User $user)
     {
-        return view('profile', compact('user'));
+        return view('layouts.users.profile', compact('user'));
     }
 }

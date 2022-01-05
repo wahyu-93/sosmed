@@ -30,9 +30,11 @@
             @endisset
 
             <!-- Page Content -->
-            <main class="py-5">
+            <main class="mt-8">
                 {{ $slot }}
             </main>
+
+            @include('layouts.footer')
         </div>
     </body>
 </html>

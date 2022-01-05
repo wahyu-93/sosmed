@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FollowingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\TimelineController;
@@ -23,6 +24,7 @@ Route::get('/', function () {
 Route::get('/timeline', TimelineController::class)->name('timeline');
 Route::post('/status', [StatusController::class, 'store'])->name('status.store');
 Route::get('/profile/{user}', ProfileController::class)->name('profile');
+Route::get('/profile/{user}/{following}', FollowingController::class)->name('profile.follow');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
