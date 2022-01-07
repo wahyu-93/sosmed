@@ -24,7 +24,8 @@ Route::get('/', function () {
 Route::get('/timeline', TimelineController::class)->name('timeline');
 Route::post('/status', [StatusController::class, 'store'])->name('status.store');
 Route::get('/profile/{user}', ProfileController::class)->name('profile');
-Route::get('/profile/{user}/{following}', FollowingController::class)->name('profile.follow');
+Route::get('/profile/{user}/{following}', [FollowingController::class, 'index'])->name('profile.follow');
+Route::post('/profile/{user}/store', [FollowingController::class, 'store'])->name('profile.follow.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
