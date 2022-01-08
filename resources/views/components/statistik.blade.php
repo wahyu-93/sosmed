@@ -29,9 +29,10 @@
                         @endif
                     </x-button> 
                 @else 
-                    <x-button>
-                        Edit Profile
-                    </x-button>
+                    <a href="{{ route('profile.edit') }}" 
+                       class="inline-flex items-center px-2 py-1 bg-blue-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150">
+                         Edit Profile
+                    </a>
                 @endif
             </form>
         </div>

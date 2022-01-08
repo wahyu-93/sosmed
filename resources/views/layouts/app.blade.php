@@ -17,6 +17,9 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
+        @if (session()->has('message'))
+            <div class="bg-green-500 text-white text-xl w-full py-2 px-4">{{ session()->get('message') }}</div>
+        @endif
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 

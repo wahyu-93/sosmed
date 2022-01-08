@@ -5,6 +5,7 @@ use App\Http\Controllers\FollowingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\TimelineController;
+use App\Http\Controllers\UpdateProfileController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,15 +23,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', WelcomeController::class)->name('welcome');
 
 Route::middleware('auth')->group(function(){
-    Route::get('/timeline', TimelineController::class)->name('timeline');
-    Route::post('/status', [StatusController::class, 'store'])->name('status.store');
+    Route::get('timeline', TimelineController::class)->name('timeline');
+    Route::post('status', [StatusController::class, 'store'])->name('status.store');
     
-    Route::get('/explorer', ExploreUserController::class)->name('explorer.index');
+    Route::get('explorer', ExploreUserController::class)->name('explorer.index');
 
     Route::prefix('profile')->group(function(){
-        Route::get('/{user}', ProfileController::class)->name('profile');
-        Route::get('/{user}/{following}', [FollowingController::class, 'index'])->name('profile.follow');
-        Route::post('/{user}/store', [FollowingController::class, 'store'])->name('profile.follow.store');
+        Route::get('edit', [UpdateProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('edit', [UpdateProfileController::class, 'update'])->name('profile.update');
+
+        Route::get('{user}', ProfileController::class)->name('profile');
+        Route::get('{user}/{following}', [FollowingController::class, 'index'])->name('profile.follow');
+        Route::post('{user}/store', [FollowingController::class, 'store'])->name('profile.follow.store');
     });
 });
 

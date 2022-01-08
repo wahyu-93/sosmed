@@ -14,7 +14,6 @@ class Status extends Model
 
     protected $with = ['user'];
 
-
     public function user()
     {
         return $this->BelongsTo(User::class);
