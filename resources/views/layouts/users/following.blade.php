@@ -20,25 +20,7 @@
     <div class="mt-5">
         <x-container>
             <div class="grid grid-cols-3 gap-5">                
-                @foreach ($follow as $user)
-                    <x-card>
-                        <div class="flex mt-3 items-center">
-                            <div class="flex-shrink-0s mr-3">
-                                <img class="w-10 h-10 rounded-full" src="{{ $user->gravatar() }}" alt="">
-                            </div>
-                            
-                            <div>
-                                <div class="font-semibold">
-                                    {{ $user->name }}
-                                </div>
-                                
-                                <div class="text-gray-500 text-sm">
-                                    {{ $user->pivot->created_at->diffForHumans() }}
-                                </div>
-                            </div>
-                        </div>    
-                    </x-card>
-                @endforeach
+                <x-following :following="$follow"></x-following>
             </div>
         </x-container>
     </div>

@@ -6,7 +6,7 @@
                     <form action="{{ route('status.store') }}" method="post">
                         @csrf
                         <div class="flex">
-                            <div class="mr-3">
+                            <div class="flex-shrink-0 mr-3">
                                 <img class="w-10 h-10 rounded-full" src="{{ Auth::user()->gravatar() }}" alt="">
                             </div>
     
@@ -33,7 +33,7 @@
                 @foreach ($statuses as $status)
                     <div class="border rounded-xl p-5 my-3">
                         <div class="flex">
-                            <div class="flex-shrink-0s mr-3">
+                            <div class="flex-shrink-0 mr-3">
                                 <img class="w-10 h-10 rounded-full" src="{{ $status->user->gravatar() }}" alt="">
                             </div>
     
@@ -54,6 +54,7 @@
                         </div>    
                     </div>
                 @endforeach
+                
             </div>
             <div class="col-span-4">
                 <x-card>
@@ -61,19 +62,21 @@
                     <div class="space-y-5">
                         @foreach ($following as $user)
                             <div class="flex mt-3 items-center">
-                                <div class="flex-shrink-0s mr-3">
+                                <div class="flex-shrink-0 mr-3">
                                     <img class="w-10 h-10 rounded-full" src="{{ $user->gravatar() }}" alt="">
                                 </div>
-
-
+                    
+                    
                                 <div>
                                     <div class="font-semibold">
                                     {{ $user->name }}
                                     </div>
-
-                                    <div class="text-gray-500 text-sm">
-                                    {{ $user->pivot->created_at->diffForHumans() }}
-                                    </div>
+                    
+                                    @if($user->pivot)
+                                        <div class="text-gray-500 text-sm">
+                                        {{ $user->pivot->created_at->diffForHumans() }}
+                                        </div>
+                                    @endif
                                 </div>
                             </div>    
                         @endforeach
