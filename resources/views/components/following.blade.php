@@ -36,10 +36,6 @@
                                 @endif
                             </x-button-custom> 
                         @endif
-                    @else 
-                        <x-button>
-                            Edit Profile
-                        </x-button>
                     @endif
                 </form>
             </div>
