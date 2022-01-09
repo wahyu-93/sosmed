@@ -55,6 +55,14 @@
                                 View Profile
                             </x-dropdown-link>
 
+                            <x-dropdown-link href="{{ route('profile.edit') }}">
+                                Update Profile
+                            </x-dropdown-link>
+        
+                            <x-dropdown-link href="{{ route('password.edit') }}">
+                                Change Password
+                            </x-dropdown-link>
+
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
@@ -111,6 +119,14 @@
 
                     <x-responsive-nav-link href="{{ route('profile', Auth::user()->username) }}">
                         View Profile
+                    </x-responsive-nav-link>
+
+                    <x-responsive-nav-link href="{{ route('profile.edit') }}">
+                        Update Profile
+                    </x-responsive-nav-link>
+
+                    <x-responsive-nav-link href="{{ route('password.edit') }}">
+                        Change Password
                     </x-responsive-nav-link>
 
                     <x-responsive-nav-link :href="route('logout')"

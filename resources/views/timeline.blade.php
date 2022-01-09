@@ -56,33 +56,36 @@
                 @endforeach
                 
             </div>
-            <div class="col-span-4">
-                <x-card>
-                    <h1 class="font-semibold">Recently Follow</h1>
-                    <div class="space-y-5">
-                        @foreach ($following as $user)
-                            <div class="flex mt-3 items-center">
-                                <div class="flex-shrink-0 mr-3">
-                                    <img class="w-10 h-10 rounded-full" src="{{ $user->gravatar() }}" alt="">
-                                </div>
-                    
-                    
-                                <div>
-                                    <div class="font-semibold">
-                                    {{ $user->name }}
+
+            @if (Auth::user()->follows()->count())
+                <div class="col-span-4">
+                    <x-card>
+                        <h1 class="font-semibold">Recently Follow</h1>
+                        <div class="space-y-5">
+                            @foreach ($following as $user)
+                                <div class="flex mt-3 items-center">
+                                    <div class="flex-shrink-0 mr-3">
+                                        <img class="w-10 h-10 rounded-full" src="{{ $user->gravatar() }}" alt="">
                                     </div>
-                    
-                                    @if($user->pivot)
-                                        <div class="text-gray-500 text-sm">
-                                        {{ $user->pivot->created_at->diffForHumans() }}
+                        
+                        
+                                    <div>
+                                        <div class="font-semibold">
+                                        {{ $user->name }}
                                         </div>
-                                    @endif
-                                </div>
-                            </div>    
-                        @endforeach
-                    </div>
-                </x-card>
-            </div>
+                        
+                                        @if($user->pivot)
+                                            <div class="text-gray-500 text-sm">
+                                            {{ $user->pivot->created_at->diffForHumans() }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>    
+                            @endforeach
+                        </div>
+                    </x-card>
+                </div>
+            @endif
         </div>
     </x-container>
 </x-app-layout>
